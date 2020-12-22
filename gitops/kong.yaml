@@ -1,0 +1,54 @@
+_format_version: "1.1"
+services:
+  - name: Greeting_API
+    url: http://host.docker.internal:8081
+    plugins: []
+    routes:
+      - tags:
+          - OAS3_import
+          - OAS3file_oas.yaml
+        name: Greeting_API-path-get
+        methods:
+          - GET
+        paths:
+          - /greetings/(?<greetingId>\S+)$
+        strip_path: false
+        plugins:
+          - name: key-auth
+            config:
+              key_names:
+                - api_key
+      - tags:
+          - OAS3_import
+          - OAS3file_oas.yaml
+        name: Greeting_API-path_1-get
+        methods:
+          - GET
+        paths:
+          - /greetings
+        strip_path: false
+        plugins:
+          - name: key-auth
+            config:
+              key_names:
+                - api_key
+      - tags:
+          - OAS3_import
+          - OAS3file_oas.yaml
+        name: Greeting_API-path_2-post
+        methods:
+          - POST
+        paths:
+          - /greetings
+        strip_path: false
+    tags:
+      - OAS3_import
+      - OAS3file_oas.yaml
+upstreams:
+  - name: Greeting_API
+    targets:
+      - target: host.docker.internal:8081
+    tags:
+      - OAS3_import
+      - OAS3file_oas.yaml
+
