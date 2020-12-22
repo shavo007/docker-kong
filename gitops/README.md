@@ -11,6 +11,11 @@ brew install deck
 ```
 
 ## Steps
+
+Run kong via docker compose [here](./../compose/docker-compose.yml)
+
+Access konga at http://localhost:9000/#!/dashboard
+
 Run the pipeline cmd just like your CI would 
 
 ```bash
@@ -40,6 +45,8 @@ Server: kong/2.2.1
 }
 ```
 
+> Create a consumer with an api key creds zqnnuwpZ4tL0fJFgLIoSzCnidTr3IY3S
+
 With `api_key`
 
 ```bash
@@ -48,9 +55,28 @@ curl -i -X GET \
   -H 'api_key: zqnnuwpZ4tL0fJFgLIoSzCnidTr3IY3S'
 ```
 
-curl --request GET \
-  --url http://localhost:8081/greetings \
-  --header 'api_key: apiKey'
+> rate limit exceeded example
+
+```bash
+$ curl -i -X GET   'http://localhost:8000/greetings'   -H 'api_key: zqnnuwpZ4tL0fJFgLIoSzCnidTr3IY3S'
+HTTP/1.1 429 Too Many Requests
+Date: Tue, 22 Dec 2020 07:27:42 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Retry-After: 18
+Content-Length: 41
+X-RateLimit-Remaining-Minute: 0
+X-RateLimit-Limit-Minute: 3
+RateLimit-Remaining: 0
+RateLimit-Limit: 3
+RateLimit-Reset: 18
+X-Kong-Response-Latency: 5
+Server: kong/2.2.1
+
+{
+  "message":"API rate limit exceeded"
+}
+```
 ## Resources
 
 [Kong gitops](https://docs.konghq.com/deck/guides/ci-driven-configuration/)
