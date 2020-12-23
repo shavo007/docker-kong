@@ -80,3 +80,4 @@ Server: kong/2.2.1
 ## Resources
 
 [Kong gitops](https://docs.konghq.com/deck/guides/ci-driven-configuration/)
+[Inso CLI](https://github.com/Kong/insomnia/tree/develop/packages/insomnia-inso#-inso-generate-config-identifier)
