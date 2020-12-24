@@ -1,0 +1,25 @@
+extends:
+  # - https://example.com/company-ruleset.yaml
+  - spectral:oas
+
+rules:
+  my-rule-name:
+    description: Tags must have a description.
+    given: $.tags[*]
+    severity: error
+    then:
+      field: description
+      function: truthy
+  oas3-api-servers:
+    description: "OpenAPI `servers` must be present and non-empty array."
+    formats: ["oas3"]
+    given: "$"
+    then:
+      field: servers
+      function: schema
+      functionOptions:
+        schema:
+          items:
+            type: object
+          minItems: 1
+          type: array      
