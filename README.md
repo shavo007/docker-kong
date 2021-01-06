@@ -1,5 +1,7 @@
 # Docker for kong
 
+![Spectral lint workflow](https://github.com/shavo007/docker-kong/workflows/Run%20Spectral%20on%20Pull%20Requests/badge.svg)
+
 
 ## Gitops approach
 
