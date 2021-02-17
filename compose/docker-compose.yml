@@ -9,7 +9,7 @@ networks:
 
 services:
   kong-migrations:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: "${KONG_DOCKER_TAG:-kong-ee:latest}"
     command: kong migrations bootstrap
     depends_on:
       - db
@@ -29,7 +29,7 @@ services:
         condition: on-failure
 
   kong-migrations-up:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: "${KONG_DOCKER_TAG:-kong-ee:latest}"
     command: kong migrations up && kong migrations finish
     depends_on:
       - db
@@ -49,7 +49,7 @@ services:
         condition: on-failure
 
   kong:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: "${KONG_DOCKER_TAG:-kong-ee:latest}"
     user: "${KONG_USER:-kong}"
     depends_on:
       - db
@@ -67,12 +67,15 @@ services:
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
+      KONG_ADMIN_GUI_URL: localhost:8002
     secrets:
       - kong_postgres_password
     networks:
       - kong-net
     ports:
       - "8000:8000/tcp"
+      - "8002:8002/tcp"
+      - "8003:8003/tcp"
       - "127.0.0.1:8001:8001/tcp"
       - "8443:8443/tcp"
       - "127.0.0.1:8444:8444/tcp"
@@ -85,7 +88,7 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-    
+
   db:
     image: postgres:9.5
     environment:

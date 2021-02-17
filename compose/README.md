@@ -2,6 +2,16 @@
 
 This is the official Docker Compose template for [Kong][kong-site-url].
 
+With [kong enterprise](https://konghq.com/blog/kong-gateway-enterprise-2-3-now-generally-available/) now available we can now use the mgt UI
+
+## Steps
+
+- docker pull kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:2.3.2.0-alpine
+- docker images
+- docker tag <IMAGE_ID> kong-ee
+
+> you need to do this before running docker compose
+
 # What is Kong?
 
 You can find the official Docker distribution for Kong at [https://hub.docker.com/_/kong](https://hub.docker.com/_/kong).
