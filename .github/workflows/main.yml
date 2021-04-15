@@ -2,11 +2,14 @@
 name: Run Spectral on Pull Requests
 
 on:
-  schedule:
-  - cron: "0 2 * * 1-5"
+  - pull_request
+#   schedule:
+#   - cron: "0 2 * * 1-5"
+
+
   
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#   workflow_dispatch:
 
 jobs:
   build:
