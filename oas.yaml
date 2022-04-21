@@ -197,7 +197,7 @@ components:
             $ref: '#/components/schemas/Errors'
           example:
             errors:
-              - code: 400007
+              - code: '400007'
                 message: 4 is invalid or not supported.
                 field: WeatherType
     InternalServerError:
@@ -208,7 +208,7 @@ components:
             $ref: '#/components/schemas/Errors'
           example:
             errors:
-              - code: 500001
+              - code: '500001'
                 message: An internal error has occurred
     NotFoundError:
       description: Not found error
@@ -218,7 +218,7 @@ components:
             $ref: '#/components/schemas/Errors'
           example:
             errors:
-              - code: 404001
+              - code: '404001'
                 message: Invalid end point
   securitySchemes:
     api_key:
@@ -260,7 +260,6 @@ components:
           example: true     
         weatherType:
           $ref: '#/components/schemas/WeatherType'
-          example: 1
         status:
           type: string
           enum: ['SMILEY_FACE', 'SAD_FACE' ]

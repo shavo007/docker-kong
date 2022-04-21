@@ -2,6 +2,15 @@
 
 ![Spectral lint workflow](https://github.com/shavo007/docker-kong/workflows/Run%20Spectral%20on%20Pull%20Requests/badge.svg)
 
+## Getting started
+
+```bash
+cd compose
+docker-compose up -d #start in detached mode
+docker-compose ps #view status of the containers
+```
+
+Access konga at <http://localhost:9000/#!/dashboard>
 
 ## Gitops approach
 

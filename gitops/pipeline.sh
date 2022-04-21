@@ -2,7 +2,7 @@
 set -euo pipefail 
 
 echo "Validate the spec"
-npx @stoplight/spectral lint ../oas.yaml --fail-severity=warn
+npx @stoplight/spectral lint ../oas.yaml --fail-severity=error
 echo "Generate Kong declarative configuration from Spec"
 inso generate config ../oas.yaml --type declarative > ./kong.yaml
 echo "Validate Kong declarative configuration"
