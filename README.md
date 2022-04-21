@@ -8,13 +8,14 @@
 cd compose
 docker-compose up -d #start in detached mode
 docker-compose ps #view status of the containers
+docker run -d -p8081:8081 shanelee007/greetings-api:latest
 ```
 
 Access konga at <http://localhost:9000/#!/dashboard>
 
 ## Gitops approach
 
-View [here](./gitops/README.md)
+Follow along [here](./gitops/README.md)
 
 ![Kong consumer](./gitops/kong_consumer.png)
 
